@@ -3,7 +3,9 @@
 
 # You can use it to add commands that run after AeroSpace startup.
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = [
+  'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=7.0'
+]
 
 # Start AeroSpace at login
 start-at-login = false
@@ -31,7 +33,7 @@ default-root-container-orientation = 'auto'
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 # Fallback value (if you omit the key): on-focused-monitor-changed = []
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
-# on-focus-changed= "move-mouse window-lazy-center"
+# on-focus-changed= "move-mouse window-lazy-center" 
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
 # Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
@@ -114,6 +116,10 @@ automatically-unhide-macos-hidden-apps = false
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
     alt-1 = 'workspace 1'
+#     alt-1 = [
+#   { if = "workspace != 1", then = "workspace 1" },
+#   { if = "workspace == 1", then = "focus-back-and-forth" }
+# ]
     alt-2 = 'workspace 2'
     alt-3 = 'workspace 3'
     alt-4 = 'workspace 4'
@@ -159,6 +165,7 @@ automatically-unhide-macos-hidden-apps = false
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     alt-shift-semicolon = 'mode service'
+    
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -179,6 +186,8 @@ automatically-unhide-macos-hidden-apps = false
     down = 'volume down'
     up = 'volume up'
     shift-down = ['volume set 0', 'mode main']
+
+
 
 
 [[on-window-detected]]
@@ -212,3 +221,12 @@ run = 'move-node-to-workspace Q'
 [[on-window-detected]]
 if.app-id = 'com.microsoft.VSCode'
 run = 'move-node-to-workspace 2'
+[[on-window-detected]]
+if.app-id = 'com.adobe.Photoshop'
+run = 'move-node-to-workspace A'
+[[on-window-detected]]
+if.app-id = 'com.adobe.illustrator'
+run = 'move-node-to-workspace A'
+[[on-window-detected]]
+if.app-id = 'com.adobe.InDesign'
+run = 'move-node-to-workspace A'
