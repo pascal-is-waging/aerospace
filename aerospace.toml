@@ -229,7 +229,7 @@ run = 'move-node-to-workspace Q'
 if.app-id = 'com.microsoft.VSCode'
 run = 'move-node-to-workspace 2'
 [[on-window-detected]]
-if.app-id = 'com.adobe.Photoshop'
+if.app-id = 'com.adobe.Photoshop' 
 run = 'move-node-to-workspace A'
 [[on-window-detected]]
 if.app-id = 'com.adobe.illustrator'
@@ -237,3 +237,12 @@ run = 'move-node-to-workspace A'
 [[on-window-detected]]
 if.app-id = 'com.adobe.InDesign'
 run = 'move-node-to-workspace A'
+[[on-window-detected]]
+if.app-id = 'com.figma.Desktop'
+run = 'move-node-to-workspace A'
+[[on-window-detected]]
+if.app-id = 'com.apple.FontBook'
+run = 'layout floating'
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = 'layout floating'
