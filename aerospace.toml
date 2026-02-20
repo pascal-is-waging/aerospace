@@ -5,13 +5,12 @@
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 
 after-startup-command = [
-  'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=7.0' , 'exec-and-forget sketchybar'
+  'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=7.0' , 'exec-and-forget sketchybar', 'exec-and-forget sh -c "for id in $(aerospace list-windows --app-bundle-id com.apple.finder --format %{window-id}); do aerospace move-node-to-workspace D --window-id $id; aerospace layout floating --window-id $id; done"'
 ]
 
 # Notify Sketchybar about workspace change
-exec-on-workspace-change = ['/bin/bash', '-c',
-    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
-]
+exec-on-workspace-change = ['/bin/bash', '-c', 'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE && ~/.config/sketchybar/plugins/update_workspace_icons.sh']
+
 
 # Start AeroSpace at login
 start-at-login = true
@@ -143,6 +142,8 @@ automatically-unhide-macos-hidden-apps = true
     alt-e = 'workspace E'
     alt-t = 'workspace T'
 
+    alt-shift-g = 'exec-and-forget /Users/aa/.config/aerospace/move-finder-to-D.sh'
+
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
     alt-shift-1 = 'move-node-to-workspace 1'
@@ -161,7 +162,8 @@ automatically-unhide-macos-hidden-apps = true
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
     alt-tab = 'workspace-back-and-forth'
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-    alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+
+    # alt-shift-tab = 'move-node-to-workspace-back-and-forth'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     alt-shift-semicolon = 'mode service'
@@ -253,4 +255,6 @@ run = ['layout floating', 'move-node-to-workspace E']
 [[on-window-detected]]
 if.app-id = 'com.apple.Preview'
 run = 'layout floating'
-
+[[on-window-detected]]
+if.app-id = 'com.apple.TextEdit'
+run = 'layout floating'
